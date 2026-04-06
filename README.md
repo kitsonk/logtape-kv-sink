@@ -10,7 +10,7 @@ Deno KV.
 Log messages could be large, and therefore this library stores serialized versions of the log messages as an arbitrary
 sized blob within Deno KV via the [@kitsonk/kv-toolbox](https://kview.deno.dev/kv-toolbox) library.
 
-# Usage
+## Usage
 
 Basic usage is to provide an instance of `Deno.Kv` to the `getKvSink()` function as part of the configuration of
 LogTape:
