@@ -217,7 +217,8 @@ export function getKvSink(store: Deno.Kv | Promise<Deno.Kv>, options: KvSinkOpti
   };
 }
 
-const AsyncIterator = Object.getPrototypeOf(async function* () {}).constructor;
+// deno-lint-ignore no-explicit-any
+const AsyncIterator: new () => AsyncIterator<any> = Object.getPrototypeOf(async function* () {}).constructor;
 
 /**
  * An async iterator that retrieves log records from a Deno KV store.
@@ -254,7 +255,7 @@ export class AsyncLogRecordIterator extends AsyncIterator implements AsyncIterab
     this.#selector = selector;
   }
 
-  async next(): Promise<IteratorResult<LogRecord, undefined>> {
+  override async next(): Promise<IteratorResult<LogRecord, undefined>> {
     if (!this.#iterator) {
       const kv = await this.#storePromise;
       this.#iterator = query(kv, this.#selector, {

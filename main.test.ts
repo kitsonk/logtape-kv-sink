@@ -39,7 +39,7 @@ Deno.test({
         rawMessage: "Hello, world!",
         properties: {},
       });
-      await delay(0); // Wait for the microtask queue to flush
+      await delay(100); // Wait for the microtask queue to flush
       const maybeLogEntry = await kv.get<BlobMeta>(["__logtape__", "entries", 0n, "__kv_toolbox_meta__"]);
       assert(maybeLogEntry.value);
       assertEquals(maybeLogEntry.value.kind, "buffer");
