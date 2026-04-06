@@ -1,0 +1,27 @@
+{
+  "name": "@kitsonk/logtape-kv-sink",
+  "version": "0.1.0",
+  "exports": "./main.ts",
+  "publish": {
+    "exclude": [
+      "*.test.ts",
+      ".github",
+      ".vscode"
+    ]
+  },
+  "unstable": ["kv"],
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check --doc *.ts",
+    "dev": "deno run --watch main.ts",
+    "test": "deno test"
+  },
+  "lint": {
+    "rules": { "tags": ["recommended"] },
+    "exclude": ["**/*.test.ts"]
+  },
+  "fmt": { "lineWidth": 120 },
+  "imports": {
+    "@kitsonk/kv-toolbox": "jsr:@kitsonk/kv-toolbox@^0.30.0",
+    "@logtape/logtape": "jsr:@logtape/logtape@^2"
+  }
+}
